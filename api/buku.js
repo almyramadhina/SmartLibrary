@@ -10,13 +10,13 @@ const dbPromise = new Pool({
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     port: process.env.DB_PORT,
-    ssl: false
+    ssl: true
 })
 
+dbPromise.connect()
 //add data buku baru (POST)
 app.post('/buku/add',async(req,res) => {
     try {
-        //const id_buku = req.params.id_buku
         const {judul, author, lokasi, jml_total, jml_pinjam} = req.body
         const jml_avail = jml_total - jml_pinjam;
         await dbPromise.query(`insert into umum(judul, author, lokasi, jml_total, jml_pinjam, jml_avail)
@@ -36,7 +36,7 @@ app.post('/buku/add',async(req,res) => {
 app.get('/buku/search/:judul', async(req,res) => {
     let ret;
     const judul = req.params.judul
-    dbPromise.query('SELECT id_buku, judul, author, lokasi, jml_avail FROM buku WHERE judul=$1',[judul], (err,result) => {
+    dbPromise.query('SELECT * FROM buku WHERE judul=$1',[judul], (err,result) => {
         if (!err){
             ret={
                 status:200,

@@ -1,19 +1,21 @@
 const Express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const port = 3001
+const port = process.env.PORT||3001
 const app = Express()
-//const Pool = require('pg').Pool
+const Pool = require('pg').Pool
 require('dotenv').config()
 
-/*const db = new Pool({
+const db = new Pool({
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   port: process.env.DB_PORT,
-  ssl: false
-})*/
+  ssl: true
+})
+
+db.connect();
 
 //function connectDBPromise(){
   const anggotaRouter = require('./api/anggota')
@@ -29,4 +31,6 @@ require('dotenv').config()
   app.use(peminjamanRouter)
 //}
   
-app.listen(port, ()=>console.log('web service berhasil dijalankan'))
+app.listen(port, function() {
+  console.log('Server Starts on ${port}')
+});

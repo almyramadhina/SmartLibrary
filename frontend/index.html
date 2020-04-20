@@ -5,7 +5,7 @@
 	<meta charset="UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/logo_itb.png"/>
+	<link rel="icon" type="image/png" href="images/icons/logo_itb.png"/> 
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -34,13 +34,23 @@
         UPT Perpustakaan ITB
 	  </a>
 	  <button id="adminLogin" onclick="showModal();" class="btn btn-1" type="submit">Login as Admin</button>
-    </nav>	
+	</nav>	
+
+	<div class="container" align="center" style="margin-top:20px">
+		<div class="wrap-contact100">
+            <!--</form> -->
+            <label class="contact100-form-title" for="first-name" align="center">Katalog Buku</label>
+			<!--<div class="wrap-input100">-->
+				<form class="form-inline" action="#" style="align-self: center;" method="GET">
+                    <input id="kota" class="input100" type="text" text-align="center" name="kota" placeholder="Masukkan judul/author" > <br/>
+					<br/><button id="cariData" align="center" onclick="showModal();" class="btn btn-2" type="submit" style="margin:auto;display:block"> Cari</button>
+				</form>
+                
+            <!--</div>-->
+            </div>
+		</div>
+
 			<form class="contact100-form validate-form">
-                <div class="contact100-form-title">
-                    <br/><span class="center">
-                        Katalog Buku
-                    </span>
-                </div>
 
 				<table class="center" id="tabelBuku" style="margin-bottom:10px">
                     <thead id="tabheadpayment">
@@ -67,8 +77,8 @@
                 </div>
                 <div class="modal-body">
                     <!--<div id="dmods">-->
-                        <p>Username : <input id="username" class="input100" type="text" name="username" placeholder="Username" required> </p>
-                        <p>Password : <input id="password" class="input100" type="text" name="password" placeholder="Password" required> </p>
+                        <p>Username : <input id="username" class="input100" type="text" name="username" placeholder="Masukkan username" required> </p>
+                        <p>Password : <input id="password" class="input100" type="password" name="password" placeholder="Masukkan password" required> </p>
                     <!--</div>-->
                 </div>
                 <div class="modal-footer">

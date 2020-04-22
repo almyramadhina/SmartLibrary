@@ -29,29 +29,31 @@
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-primary" id="navbarITB">
-        <a class="navbar-brand" href="home.html">
+        <a class="navbar-brand" href="admin_menu.html">
           <img src="images/icons/logo_itb.png" width="50" height="50" alt="">
           UPT Perpustakaan ITB
         </a>
       </nav>
+
 	<div class="container-contact100">
-		
 		<div class="col" align="center" style="margin-top:15px">
 		<div class="wrap-contact100">
             <!--</form> -->
             <label class="contact100-form-title" for="first-name" align="center">Daftar Anggota Perpustakaan</label>
-            <label class="row">
+            <button id="addAnggota" onclick="showModal();" class="btn btn-2" type="button" style="margin-bottom:50px">Add Anggota Umum</button>
+            <br/><label class="row">
 					<input type="radio" id="smahasiswa" name = "search" value="search"> <label for="male">Cari data mahasiswa</label><br/>
-				</label>
-				<label class="row">
-					<br/><input type="radio" id="sumum" name = "search" value="search"> <label for="male">Cari data umum</label>
-				</label>
-				<form class="form-inline" action="#" style="align-self: center;" method="GET">
-                    <input id="searchData" class="input100" type="text" text-align="center" placeholder="Masukkan Nama Anggota" > <br/>
-				<div class="wrapper">
-					<br/><button id="cariData" align="center" onclick="showDataSearch();" class="btn btn-2" type="submit" style="margin:auto;display:block"> Cari</button>
-				</div>
-				</form>
+			</label>
+			<label class="row">
+				<br/><input type="radio" id="sumum" name = "search" value="search"> <label for="male">Cari data umum</label>
+			</label>
+			<form class="form-inline" action="#" style="align-self: center;" method="GET">
+                <input id="searchData" class="input100" type="text" text-align="center" placeholder="Masukkan Nama Anggota" > <br/>
+                <div class="wrapper">
+                    <br/><button id="cariData" align="center" onclick="showDataSearch();" class="btn btn-2" type="submit" style="margin:auto;display:block"> Cari</button>
+                </div>
+            </form>
+        
             <form class="contact100-form validate-form">
             <table class="center" id="tabelMahasiswa">Data Mahasiswa
                     <thead id="tabheadMahasiswa">
@@ -66,7 +68,7 @@
                     </thead>
                     <tbody id="tabbodyMahasiswa"></tbody>
                 </table>   
-
+                <br/>
                 <table class="center" id="tabelUmum">Data Umum
                     <thead id="tabheadUmum">
                     <tr>
@@ -80,9 +82,36 @@
                     </thead>
                     <tbody id="tabbodyUmum"></tbody>
                 </table>     
-			</form>
-</body>
-</html>
+            </form>
+
+            <div id="detailModal" class="modal" role="dialog" style="display: none">
+				<!-- Modal content -->
+				  <div class="modal-dialog" role="document">
+					  <div class="modal-content" >
+						  <div class="modal-header">
+							  <h5 class="modal-title" align="center" id="exampleModalLabel">Add Anggota Umum</h5>
+						  </div>
+						  <div class="modal-body">
+							  <!--<div id="dmods">--> 
+								  <p>ID Umum<input id="m_id_umum" class="input100" type="text" name="id_umum" placeholder="Masukkan ID Umum" required> </p>
+								  <br/><p>Nama<input id="m_nama" class="input100" type="text" name="nama" placeholder="Masukkan Nama" required> </p>
+                                  <br/><p>Alamat<input id="m_alamat" class="input100" type="text" name="alamat" placeholder="Masukkan Alamat" required> </p>
+                                  <br/><p>No HP<input id="m_no_hp" class="input100" type="text" name="no_hp" placeholder="Masukkan No HP" required> </p>
+                                  <br/><p>Email<input id="m_email" class="input100" type="text" name="email" placeholder="Masukkan Email" required> </p>
+                                  <br/><p>Pekerjaan<input id="m_job" class="input100" type="text" name="job" placeholder="Masukkan Pekerjaan" required> </p>
+                                  <!--</div>-->
+						  </div>
+						  <div class="modal-footer">
+								  <button onclick="addUmum()" id=addtransaksi type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+								  <button onclick="hideModal()" id=close type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+
+        </div>
+        </div>
+	</div>
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -102,6 +131,14 @@
 	<script src="js/main.js"></script>
 	
 	<script>
+
+		function showModal() {
+			document.getElementById('detailModal').style.display='block';
+		}
+
+		function hideModal() {
+			document.getElementById('detailModal').style.display='none';
+		}
 
 	 $(document).ready(function(){
     		$.ajax({
@@ -204,4 +241,15 @@
 				});
 		   };
 	}
-        </script>
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-23581568-13');
+	</script>
+</body>
+</html>

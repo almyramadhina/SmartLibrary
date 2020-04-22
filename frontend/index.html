@@ -60,7 +60,6 @@
 		</div>
 
 			<form class="contact100-form validate-form">
-
 				<table class="center" id="tabelBuku" style="margin-bottom:10px">
                     <thead id="tabheadpayment">
                     <tr>
@@ -92,7 +91,7 @@
                 </div>
                 <div class="modal-footer">
                         <button onclick="signIn" id=signin type="button" class="btn btn-primary" data-dismiss="modal">Sign In</button>
-						<button onclick="hideModal()" id=close type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+						<button onclick="hideModal()" id=close type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -151,10 +150,9 @@
                                     "<td>"+response.result[0].jml_avail+"\n"+
 								"</td><tr/>";
 								isitab.innerHTML = content;
-				
-				      }
+				    }
 				})
-			 });
+			});
 		}
         else {
 			$(document).ready(function(){

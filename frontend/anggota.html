@@ -40,7 +40,18 @@
 		<div class="wrap-contact100">
             <!--</form> -->
             <label class="contact100-form-title" for="first-name" align="center">Daftar Anggota Perpustakaan</label>
-
+            <label class="row">
+					<input type="radio" id="smahasiswa" name = "search" value="search"> <label for="male">Cari data mahasiswa</label><br/>
+				</label>
+				<label class="row">
+					<br/><input type="radio" id="sumum" name = "search" value="search"> <label for="male">Cari data umum</label>
+				</label>
+				<form class="form-inline" action="#" style="align-self: center;" method="GET">
+                    <input id="searchData" class="input100" type="text" text-align="center" placeholder="Masukkan Nama Anggota" > <br/>
+				<div class="wrapper">
+					<br/><button id="cariData" align="center" onclick="showDataSearch();" class="btn btn-2" type="submit" style="margin:auto;display:block"> Cari</button>
+				</div>
+				</form>
             <form class="contact100-form validate-form">
             <table class="center" id="tabelMahasiswa">Data Mahasiswa
                     <thead id="tabheadMahasiswa">
@@ -139,4 +150,58 @@
 				    }
 				})
 		});
+
+        function showDataSearch() {
+		if ($("#smahasiswa").is(":checked")){
+            document.getElementById('tabelUmum').style.display='none';
+			$(document).ready(function(){
+				$.ajax({
+                    url: 'https://itbsmartlibrary.herokuapp.com/anggota/mahasiswa/'+encodeURIComponent(document.getElementById('searchData').value),
+                    type:'GET',
+                    dataType: 'json',
+                    success: function(response) {
+						console.log(response);
+							content = '';
+							var isitab = document.getElementById('tabbodyMahasiswa')
+							content+=
+							    "<tr>" +
+								    "<td>"+response.result[0].nim+"\n"+
+									"<td>"+response.result[0].nama+"\n"+
+                                    "<td>"+response.result[0].fakultas+"\n"+
+                                    "<td>"+response.result[0].prodi+"\n"+
+                                    "<td>"+response.result[0].angkatan+"\n"+
+                                    "<td>"+response.result[0].status_aktif+"\n"+
+								"</td><tr/>";
+								isitab.innerHTML = content;
+				
+				      }
+				})
+			 });
+		}
+        else {
+            document.getElementById('tabelMahasiswa').style.display='none';
+			$(document).ready(function(){
+				$.ajax({
+                    url: 'https://itbsmartlibrary.herokuapp.com/anggota/umum/'+encodeURIComponent(document.getElementById('searchData').value),
+                    type:'GET',
+                    dataType: 'json',
+                    success: function(response) {
+						console.log(response);
+							content = '';
+							var isitab = document.getElementById('tabbodyUmum')
+							content+=
+								"<tr>" +
+								 "<td>"+response.result[0].id_umum+"\n"+
+									"<td>"+response.result[0].nama+"\n"+
+                                    "<td>"+response.result[0].alamat+"\n"+
+                                    "<td>"+response.result[0].no_hp+"\n"+
+                                    "<td>"+response.result[0].email+"\n"+
+                                    "<td>"+response.result[0].pekerjaan+"\n"+
+								"</td><tr/>";
+							isitab.innerHTML = content;
+							}
+				});
+				});
+		   };
+	}
         </script>

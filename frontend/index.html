@@ -90,7 +90,7 @@
                     <!--</div>-->
                 </div>
                 <div class="modal-footer">
-                        <button onclick="signIn" id=signin type="button" class="btn btn-primary" data-dismiss="modal">Sign In</button>
+                        <button onclick="signIn()" id=signin type="button" class="btn btn-primary" data-dismiss="modal">Sign In</button>
 						<button onclick="hideModal()" id=close type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -117,6 +117,15 @@
 	
 	
 	<script>	
+	
+	function showModal() {
+		document.getElementById('detailModal').style.display='block';
+    	}
+
+	function hideModal() {
+		document.getElementById('detailModal').style.display='none';
+    	}
+		
 	$(document).ready(function(){
 				$.ajax({
                     url: 'https://itbsmartlibrary.herokuapp.com/buku/list/all',

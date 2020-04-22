@@ -39,7 +39,7 @@
                     <br/><span class="center">
                         Peminjaman
 					</span><br/><br/>
-					<button id="addTransaksi" onclick="showModal();" class="btn btn-2" type="button">Add Transaksi</button>
+					<button id="addTransaksi" onclick="showModal();" class="btn btn-2" type="button">Tambah Peminjaman</button>
 				</div>
 				<table class="center" id="tabelTransaksi" style="margin-bottom:10px">
                     <thead id="tabheadTransaksi">
@@ -63,7 +63,7 @@
 				  <div class="modal-dialog" role="document">
 					  <div class="modal-content" >
 						  <div class="modal-header">
-							  <h5 class="modal-title" align="center" id="exampleModalLabel">Add Peminjaman</h5>
+							  <h5 class="modal-title" align="center" id="exampleModalLabel">Tambah Peminjaman</h5>
 						  </div>
 						  <div class="modal-body">
 							  <!--<div id="dmods">--> 
@@ -72,7 +72,7 @@
 							  <!--</div>-->
 						  </div>
 						  <div class="modal-footer">
-								  <button onclick="addTransaksi" id=addtransaksi type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+								  <button onclick="addTransaksi()" id=addtransaksi type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
 								  <button onclick="hideModal()" id=close type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 						  </div>
 					  </div>
@@ -135,6 +135,15 @@
 				}
 			});
 		});
+	</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-23581568-13');
 	</script>
 
 </body>

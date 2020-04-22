@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Penerimaan Mahasiswa Baru</title>
+	<meta charset="UTF-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/logo_itb.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-primary" id="navbarITB">
+        <a class="navbar-brand" href="home.html">
+          <img src="images/icons/logo_itb.png" width="50" height="50" alt="">
+          UPT Perpustakaan ITB
+        </a>
+      </nav>
+	<div class="container-contact100">
+		
+		<div class="col" align="center" style="margin-top:15px">
+		<div class="wrap-contact100">
+            <!--</form> -->
+            <label class="contact100-form-title" for="first-name" align="center">Daftar Anggota Perpustakaan</label>
+
+            <form class="contact100-form validate-form">
+            <table class="center" id="tabelMahasiswa">Data Mahasiswa
+                    <thead id="tabheadMahasiswa">
+                    <tr>
+                        <th>NIM</th>
+                        <th>Nama</th>
+                        <th>Prodi</th>
+                        <th>Fakultas</th>
+                        <th>Angkatan</th>
+                        <th>Status Aktif</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tabbodyMahasiswa"></tbody>
+                </table>   
+
+                <table class="center" id="tabelUmum">Data Umum
+                    <thead id="tabheadUmum">
+                    <tr>
+                        <th>ID Umum</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>No HP</th>
+                        <th>Email</th>
+                        <th>Pekerjaan</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tabbodyUmum"></tbody>
+                </table>     
+			</form>
+</body>
+</html>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	
+	<script>
+
+	 $(document).ready(function(){
+    		$.ajax({
+                    url: 'https://itbsmartlibrary.herokuapp.com/anggota/mahasiswa',
+                    type:'GET',
+                    dataType: 'json',
+                    success: function(response) {
+						console.log(response);
+							content = '';
+							var isitab = document.getElementById('tabbodyMahasiswa')
+							$.each(response['result'], function(key, value) {
+								content+=
+								"<tr>" +
+									"<td>"+value.nim+"\n"+
+									"<td>"+value.nama+"\n"+
+                                    "<td>"+value.fakultas+"\n"+
+                                    "<td>"+value.prodi+"\n"+
+                                    "<td>"+value.angkatan+"\n"+
+                                    "<td>"+value.status_aktif+"\n"+
+								"</td><tr/>";
+							})
+							isitab.innerHTML = content;
+				    }
+				})
+
+                $.ajax({
+                    url: 'https://itbsmartlibrary.herokuapp.com/anggota/umum',
+                    type:'GET',
+                    dataType: 'json',
+                    success: function(response) {
+						console.log(response);
+							content = '';
+							var isitab = document.getElementById('tabbodyUmum')
+							$.each(response['result'], function(key, value) {
+								content+=
+								"<tr>" +
+									"<td>"+value.id_umum+"\n"+
+									"<td>"+value.nama+"\n"+
+                                    "<td>"+value.alamat+"\n"+
+                                    "<td>"+value.no_hp+"\n"+
+                                    "<td>"+value.email+"\n"+
+                                    "<td>"+value.pekerjaan+"\n"+
+								"</td><tr/>";
+							})
+							isitab.innerHTML = content;
+				    }
+				})
+		});
+        </script>

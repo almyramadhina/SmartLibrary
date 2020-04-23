@@ -31,14 +31,14 @@ app.post('/buku/add',async(req,res) => {
 })
 
 //Menambah stok buku lama (PUT)
-app.put('/buku/add/:id_buku',async(req,res) => {
-    const id_buku = req.params.id_buku
-    const {jml_buku} = req.body
+app.put('/buku/update',async(req,res) => {
+    const {id_buku,jml_buku} = req.body
 
     await dbPromise.query(`UPDATE buku SET jml_total=jml_total+${jml_buku}, jml_avail=jml_avail+${jml_buku}
         WHERE id_buku = ${id_buku}`)
     console.log(req.body)
-    res.json('Stok buku berhasil ditambahkan.')
+    const resData = await dbPromise.query(`select * from buku where id_buku = ${id_buku}`)
+    res.json(resData.rows)
 })
 
 //Cari buku berdasarkan judul (GET)
@@ -79,6 +79,27 @@ app.get('/buku/search/author/:author', async(req,res) => {
             ret={
                 status:err.code,
                 result: 'Data buku tidak ditemukan'
+            };
+            res.json(ret)
+        }
+    })
+})
+
+//Menampilkan semua data buku yang tersedia di perpustakaan
+app.get('/buku/list/available',async(req, res) =>{
+    let ret;
+    dbPromise.query('SELECT id_buku, judul, author, lokasi, jml_avail FROM buku WHERE jml_avail<>0 ORDER BY id_buku', (err, result) => {
+        if (!err){
+            ret={
+                status:200,
+                result: result.rows
+            };
+            res.status(200).json(ret)
+        }
+        else {
+            ret={
+                status:err.code,
+                result: 'Tidak ada buku yang tersedia saat ini.'
             };
             res.json(ret)
         }

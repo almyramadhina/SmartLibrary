@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "ITB Smart Library",
-    "description" : "Web Service ini menyediakan method-method untuk pengaksesan database perpustakaan.",
+    "description" : "Web Service ITB Smart Library.",
     "contact" : {
       "name" : "Naradita",
       "email" : "naraditanabila@gmail.com"
@@ -14,8 +14,8 @@
     "version" : "1.0.1"
   },
   "servers" : [ {
-    "url" : "https://itbsmartlibrary.herokuapp.com/",
-    "description" : "Web Service ITB Smart Library"
+    "url" : "https://api-itbsmartlibrary.herokuapp.com/",
+    "description" : "Web API ITB Smart Library"
   } ],
   "security" : [ {
     "application" : [ "read", "write" ]
@@ -177,22 +177,12 @@
         }
       }
     },
-    "/buku/add/{id_buku}" : {
+    "/buku/update" : {
       "put" : {
         "tags" : [ "buku" ],
         "summary" : "updateNumberOfBook",
         "description" : "Mengupdate jumlah buku yang sudah tersedia di perpustakaan.",
-        "parameters" : [ {
-          "name" : "id_buku",
-          "in" : "path",
-          "description" : "id buku",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "number"
-          }
-        } ],
+        "parameters" : [],
         "requestBody" : {
           "content" : {
             "application/x-www-form-urlencoded" : {
@@ -510,6 +500,9 @@
         "required" : [ "jml_buku" ],
         "type" : "object",
         "properties" : {
+          "id_buku" : {
+            "type" : "number"
+          },
           "jml_buku" : {
             "type" : "number"
           }
